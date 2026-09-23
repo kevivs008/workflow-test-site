@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangkaian Nama — NamaBayiIslami (Tes)</title>
+<meta name="description" content="Situs uji alur kerja GitHub ke Cloudflare Pages.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+<a class="brand" href="/">Nama<span>Bayi</span>Islami <small>&middot; situs tes</small></a>
+<nav>
+<a href="/">Cari Nama</a>
+<a href="/rangkaian">Rangkaian</a>
+<a href="/artikel/">Artikel</a>
+<a href="/metodologi">Metodologi</a>
+</nav>
+</header>
+<main>
+<h1>Rangkaian Nama</h1>
+<p class="meta">Situs tes: gabungkan dua nama dan lihat arti gabungannya — versi mini dari fitur asli.</p>
+<div class="controls">
+  <select id="n1"></select>
+  <select id="n2"></select>
+</div>
+<button class="btn" id="go">Gabungkan</button>
+<div id="out" style="margin-top:1.2rem;"></div>
+<script>
+const NAMES = [{"latin": "Aisyah", "arabic": "عَائِشَة", "gender": "perempuan", "arti": "yang hidup, bersemangat", "source": "Sahabiyah (istri Nabi Muhammad ﷺ)", "theme": "kehidupan", "nick": ["Aya", "Icha", "Syah"]}, {"latin": "Amir", "arabic": "أَمِير", "gender": "laki-laki", "arti": "pemimpin, pangeran", "source": "Nama Arab klasik", "theme": "kepemimpinan", "nick": ["Mir", "Ami"]}, {"latin": "Bilal", "arabic": "بِلَال", "gender": "laki-laki", "arti": "air segar, kelembapan", "source": "Sahabat (muadzin Nabi ﷺ)", "theme": "kesalehan", "nick": ["Bil"]}, {"latin": "Fatimah", "arabic": "فَاطِمَة", "gender": "perempuan", "arti": "menahan diri, suci", "source": "Putri Nabi Muhammad ﷺ", "theme": "kesalehan", "nick": ["Fima", "Timah", "Ita"]}, {"latin": "Hamzah", "arabic": "حَمْزَة", "gender": "laki-laki", "arti": "kuat, singa", "source": "Sahabat (paman Nabi ﷺ)", "theme": "keberanian", "nick": ["Ham", "Zah"]}, {"latin": "Khadijah", "arabic": "خَدِيجَة", "gender": "perempuan", "arti": "perintis, yang terpercaya", "source": "Istri pertama Nabi ﷺ", "theme": "keimanan", "nick": ["Dija", "Khadi"]}, {"latin": "Maryam", "arabic": "مَرْيَم", "gender": "perempuan", "arti": "yang dicintai, beribadah", "source": "Qur'an (Surah Maryam)", "theme": "keimanan", "nick": ["Mary", "Yam"]}, {"latin": "Zaid", "arabic": "زَيْد", "gender": "laki-laki", "arti": "yang bertumbuh, tambahan", "source": "Sahabat (anak angkat Nabi ﷺ)", "theme": "pertumbuhan", "nick": ["Zai"]}];
+const n1=document.getElementById('n1'),n2=document.getElementById('n2');
+NAMES.forEach((n,i)=>{
+  n1.add(new Option(n.latin+' ('+n.arti+')',i));
+  n2.add(new Option(n.latin+' ('+n.arti+')',i));
+});
+n2.selectedIndex=1;
+document.getElementById('go').onclick=()=>{
+  const a=NAMES[n1.value],b=NAMES[n2.value];
+  document.getElementById('out').innerHTML=
+    '<p class="arabic">'+a.arabic+' '+b.arabic+'</p>'+
+    '<h2>'+a.latin+' '+b.latin+'</h2>'+
+    '<p>Arti gabungan: <em>'+a.arti+'</em> dan <em>'+b.arti+'</em>.</p>'+
+    '<p><strong>Syarat rangkaian yang baik:</strong> mudah diucapkan, tidak janggal, dan bermakna baik — inilah yang nanti dinilai otomatis oleh fitur asli.</p>';
+};
+</script>
+</main>
+<footer><p>Situs uji untuk latihan alur kerja (GitHub &rarr; Cloudflare Pages). Bukan situs produksi.</p></footer>
+</body>
+</html>
